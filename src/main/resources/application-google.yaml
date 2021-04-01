@@ -1,0 +1,7 @@
+google:
+  client:
+    clientId: 290116955672-89bhdvh9anj3mvimci529mmf0tl69a1c.apps.googleusercontent.com
+    clientSecret: M8AeHiT7PnhNpa75GR9eRzXj
+    userAuthrizationUri: https://accounts.google.com/o/oauth2/auth
+    clientAuthenticationScheme: form
+    scop: email, profile
