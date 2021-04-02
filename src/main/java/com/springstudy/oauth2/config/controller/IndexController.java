@@ -1,7 +1,9 @@
 package com.springstudy.oauth2.config.controller;
 
+import com.springstudy.oauth2.config.domain.user.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -27,18 +29,19 @@ public class IndexController {
     return "manager";
   }
 
-  @GetMapping("/login")
-  public @ResponseBody String login(){
-    return "login";
+  @GetMapping("/loginForm")
+  public String login(){
+    return "loginForm";
   }
 
-  @GetMapping("/join")
-  public @ResponseBody String join(){
+  @GetMapping("/joinForm")
+  public String joinForm(){
+    return "joinForm";
+  }
+
+  @PostMapping("/join")
+  public @ResponseBody String join(User user){
+    System.out.println(user.getEmail());
     return "join";
-  }
-
-  @GetMapping("/joinProc")
-  public @ResponseBody String joinProc(){
-    return "Account has been registered";
   }
 }

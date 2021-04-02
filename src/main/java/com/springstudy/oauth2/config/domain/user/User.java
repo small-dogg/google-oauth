@@ -3,18 +3,16 @@ package com.springstudy.oauth2.config.domain.user;
 import com.springstudy.oauth2.config.domain.BaseTimeEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Getter
 @NoArgsConstructor
 @Entity
+@Data
 public class User extends BaseTimeEntity {
 
   @Id
@@ -22,33 +20,19 @@ public class User extends BaseTimeEntity {
   private Long id;
 
   @Column(nullable = false)
-  private String name;
+  private String username;
 
   @Column(nullable = false)
   private String email;
 
   @Column
-  private String picture;
+  private String password;
 
-  @Enumerated(EnumType.STRING)
-  @Column(nullable = false)
-  private Role role;
 
   @Builder
-  public User(String name, String email, String picture, Role role) {
-    this.name = name;
+  public User(String username, String email, String password) {
+    this.username = username;
     this.email = email;
-    this.picture = picture;
-    this.role = role;
-  }
-
-  public User update(String name, String picture) {
-    this.name = name;
-    this.picture = picture;
-    return this;
-  }
-
-  public String getRoleKey() {
-    return this.role.getKey();
+    this.password = password;
   }
 }
