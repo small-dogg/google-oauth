@@ -1,4 +1,4 @@
-package com.innogrid.oauth2.domain.user;
+package com.springstudy.oauth2.config.domain.user;
 
 
 import lombok.Getter;

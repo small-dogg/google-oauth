@@ -1,6 +1,6 @@
-package com.innogrid.oauth2.domain.user;
+package com.springstudy.oauth2.config.domain.user;
 
-import com.innogrid.oauth2.domain.BaseTimeEntity;
+import com.springstudy.oauth2.config.domain.BaseTimeEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

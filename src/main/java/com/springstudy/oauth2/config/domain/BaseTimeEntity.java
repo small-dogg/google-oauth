@@ -1,10 +1,9 @@
-package com.innogrid.oauth2.domain;
+package com.springstudy.oauth2.config.domain;
 
 import java.time.LocalDateTime;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
