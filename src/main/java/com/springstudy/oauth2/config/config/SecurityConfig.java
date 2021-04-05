@@ -3,6 +3,7 @@ package com.springstudy.oauth2.config.config;
 import java.util.HashMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,7 +14,8 @@ import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity//register Security config to Spring filter chain
+@EnableGlobalMethodSecurity(securedEnabled = true)//Active @secured
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean
@@ -36,6 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .anyRequest().permitAll()
         .and()
         .formLogin()
-        .loginPage("/loginform");
+        .loginPage("/loginForm")
+        .loginProcessingUrl("/login")
+        .defaultSuccessUrl("/");
+        //.usernameParameter(); rename the username Parameter
+
   }
 }

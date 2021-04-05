@@ -1,9 +1,9 @@
 package com.springstudy.oauth2.config.controller;
 
-import com.springstudy.oauth2.config.domain.user.Role;
 import com.springstudy.oauth2.config.domain.user.User;
 import com.springstudy.oauth2.config.domain.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ public class IndexController {
   private DelegatingPasswordEncoder delegatingPasswordEncoder;
 
   @GetMapping({"","/"})
-  public @ResponseBody String index(){
+  public String index(){
     return "index";
   }
 
@@ -40,7 +40,7 @@ public class IndexController {
   }
 
   @GetMapping("/loginForm")
-  public String login(){
+  public String loginForm(){
     return "loginForm";
   }
 
@@ -51,9 +51,15 @@ public class IndexController {
 
   @PostMapping("/join")
   public String join(User user){
-    user.setRole(Role.USER);
+    user.setRole("ROLE.USER");
     user.setPassword(delegatingPasswordEncoder.encode(user.getPassword()));
     userRepository.save(user);
     return "redirect:/loginForm";
+  }
+
+  @Secured("ROLE_ADMIN")
+  @GetMapping("/info")
+  public @ResponseBody String info(){
+    return "User Profile";
   }
 }
