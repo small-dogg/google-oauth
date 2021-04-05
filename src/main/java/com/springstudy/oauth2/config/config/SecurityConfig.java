@@ -15,7 +15,7 @@ import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity//register Security config to Spring filter chain
-@EnableGlobalMethodSecurity(securedEnabled = true)//Active @secured
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)//Active @secured, @preAuthorize,@postAuthorize
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean

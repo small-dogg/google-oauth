@@ -4,6 +4,8 @@ import com.springstudy.oauth2.config.domain.user.User;
 import com.springstudy.oauth2.config.domain.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,9 +59,16 @@ public class IndexController {
     return "redirect:/loginForm";
   }
 
-  @Secured("ROLE_ADMIN")
+  @Secured({"ROLE_ADMIN","ROLE_MANAGER"})
   @GetMapping("/info")
   public @ResponseBody String info(){
     return "User Profile";
+  }
+
+  @PostAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
+  @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
+  @GetMapping("/data")
+  public @ResponseBody String data(){
+    return "Data info";
   }
 }
