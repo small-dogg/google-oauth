@@ -3,6 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Login Page</title>
+  <style>
+    input {
+      vertical-align: middle;
+    }
+    input.form-text {
+      border: 1px solid #bcbcbc;
+      height: 28px;
+    }
+    button.google-button {
+      background: url("images/btn_google_signin_dark_normal_web.png") no-repeat;
+      border: none;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 <h1>Sign in to Page</h1>
@@ -14,6 +30,7 @@
   <button>Sign in</button>
 </form>
 
-<a href="/joinForm">Sign up</a>
+<button type="button" class="google-button"><a href="/oauth2/authorization/google">Sign in to google</a> </button>
+<button><a href="/joinForm">Sign up</a></button>
 </body>
 </html>
