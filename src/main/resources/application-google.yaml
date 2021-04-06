@@ -4,8 +4,8 @@ spring:
       client:
         registration:
           google:
-            client-id: 290116955672-lt8mqdfgm6flh2t9nl3hkaqrsqeqf616.apps.googleusercontent.com
-            client-secret: nT_FXs_rdy7tUmecMWZzvouf
+            client-id: client-id
+            client-secret: client-secret
             redirectUri: http://localhost:8080/login/oauth2/code/google
             scope:
               - email
