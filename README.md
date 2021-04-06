@@ -1,2 +1,8 @@
-# google-oauth
-Google OAuth2 Authentication Microservice
+# OAuth2 Sample Proj
+
+Supported OAuth
+ - Google OAuth
+ - Facebook OAuth
+ - Kakao OAuth
+ - Naver OAuth
+
