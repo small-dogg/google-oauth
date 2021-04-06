@@ -5,15 +5,25 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
-public class PrincipleDetails implements UserDetails {
+public class PrincipleDetails implements UserDetails, OAuth2User {
 
   private User user;
+  private Map<String, Object> attributes;
 
+  //normal user
   public PrincipleDetails(User user) {
     this.user = user;
+  }
+
+  //OAuth user
+  public PrincipleDetails(User user, Map<String, Object> attributes) {
+    this.user = user;
+    this.attributes = attributes;
   }
 
   @Override
@@ -53,5 +63,20 @@ public class PrincipleDetails implements UserDetails {
     long gap = ChronoUnit.YEARS.between(LocalDateTime.now(),user.getModifiedAt());
     System.out.println("This account's last modified at"+gap);
     return true;
+  }
+
+
+  @Override
+  public Map<String, Object> getAttributes() {
+    return attributes;
+  }
+
+  @Override
+  public String getName() {
+    return String.valueOf(attributes.get("sub"));
+  }
+
+  public User getUser() {
+    return user;
   }
 }

@@ -40,4 +40,4 @@ rebel.xml
 /build/
 .gradletasknamecache
 
-application-google.yaml
+/src/main/resources/application-google.yaml

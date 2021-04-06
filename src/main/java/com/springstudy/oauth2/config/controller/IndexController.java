@@ -1,5 +1,6 @@
 package com.springstudy.oauth2.config.controller;
 
+import com.springstudy.oauth2.config.config.auth.PrincipleDetails;
 import com.springstudy.oauth2.config.domain.user.User;
 import com.springstudy.oauth2.config.domain.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,9 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,8 +31,15 @@ public class IndexController {
     System.out.println("========Test Login=============================");
     System.out.println("Authentication : " + authentication.getPrincipal());
     return null;
-//    return
+  }
 
+  @GetMapping("/test/oauth/login")
+  public @ResponseBody
+  String testOAuthLogin(Authentication authentication, @AuthenticationPrincipal OAuth2User oauth) {
+    System.out.println("========Test Login=============================");
+    System.out.println("Authentication : " + authentication.getPrincipal());
+    System.out.println("oauth2User : " + oauth.getAttributes());
+    return null;
   }
 
   @GetMapping({"", "/"})
@@ -39,7 +49,8 @@ public class IndexController {
 
   @GetMapping("/user")
   public @ResponseBody
-  String user() {
+  String user(@AuthenticationPrincipal PrincipleDetails principleDetails){
+    System.out.println(principleDetails.getUser());
     return "user";
   }
 
